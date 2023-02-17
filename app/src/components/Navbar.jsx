@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react';
 
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { RegisterModal } from '../pages/RegisterModal';
+import { LoginModal } from '../pages/LoginModal';
 
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components'
@@ -57,8 +58,8 @@ const ModalMenuItem = styled.div`
 const Navbar = () => {
     const numberOfCartItems = useSelector(state => state.cart.cartItems.length)
     const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
-    const dispatch = useDispatch()
-
+    const [isLogInModalOpen, setIsLogInModalOpen] = useState(false)
+    
     return (
         <Container>
             <Nav>
@@ -73,8 +74,8 @@ const Navbar = () => {
                     <ModalMenuItem onClick={()=>setIsRegisterModalOpen(true)}>
                         REGISTER
                     </ModalMenuItem>
-                    <ModalMenuItem>
-                        SIGN IN
+                    <ModalMenuItem onClick={()=>setIsLogInModalOpen(true)}>
+                        LOG IN
                     </ModalMenuItem>
                     <MenuItem to="/cart">
                         <Badge badgeContent={numberOfCartItems} color="primary">
@@ -84,6 +85,7 @@ const Navbar = () => {
                 </Right>
             </Nav>
             <RegisterModal isOpen={isRegisterModalOpen} setIsOpen={setIsRegisterModalOpen} />
+            <LoginModal isOpen={isLogInModalOpen} setIsOpen={setIsLogInModalOpen} />
         </Container>
     )
 }

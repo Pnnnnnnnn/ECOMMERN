@@ -18,7 +18,7 @@ const modalStyles = {
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
         width: '400px',
-        height: '455px',
+        height: '355px',
         padding: '20px',
         borderRadius: '10px'
     }
@@ -77,43 +77,34 @@ const Button = styled.button`
     color: white;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 35px;
     outline: none;
 `;
 
-export const RegisterModal = ({ isOpen, setIsOpen }) => {
+export const LoginModal = ({ isOpen, setIsOpen }) => {
     const [username, setUsername] = useState('')
-    const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [confirmPassword, setConfirmPassword] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
 
-    const signInHandler = async (e) => {
+    const logInHandler = async (e) => {
         e.preventDefault()
         if (isSubmitting) return
         setIsSubmitting(true)
 
-        if (!username || !email || !password || !confirmPassword) {
+        if (!username || !password) {
             console.log('Please complete the form')
             toast.error('Please complete the form')
             setIsSubmitting(false)
             return
         }
-        if (password !== confirmPassword) {
-            console.log('Passwords do not match')
-            toast.error('Passwords do not match')
-            setIsSubmitting(false)
-            return
-        }
 
         try {
-            const res = await api.post('/auth/register', {
+            const res = await api.post('/auth/login', {
                 username,
-                email,
                 password
             })
             console.log(res)
-            toast.success('User created successfully')
+            toast.success('Log in successfully')
             setIsOpen(false)
         } catch (err) {
             if (axios.isAxiosError(err)) {
@@ -130,33 +121,23 @@ export const RegisterModal = ({ isOpen, setIsOpen }) => {
     return (
         <Modal isOpen={isOpen}
             onRequestClose={() => setIsOpen(false)}
-            contentLabel="Register Modal"
+            contentLabel="Login Modal"
             style={modalStyles}
         >
             <Container>
                 <Top>
-                    <Title>Register</Title>
+                    <Title>Log In</Title>
                     <CloseIcon onClick={() => setIsOpen(false)} />
                 </Top>
-                <Form onSubmit={signInHandler}>
+                <Form onSubmit={logInHandler}>
                     <InputContainer>
                         <Label htmlFor="username">Username</Label>
                         <Input type="text" id="username" value={username} onChange={e => setUsername(e.target.value)} />
                     </InputContainer>
 
                     <InputContainer>
-                        <Label htmlFor="email">Email</Label>
-                        <Input type="text" id="email" value={email} onChange={e => setEmail(e.target.value)} />
-                    </InputContainer>
-
-                    <InputContainer>
                         <Label htmlFor="password">Password</Label>
                         <Input type="password" id="password" value={password} onChange={e => setPassword(e.target.value)} />
-                    </InputContainer>
-
-                    <InputContainer>
-                        <Label htmlFor="confirm-password">Confirm Password</Label>
-                        <Input type="password" id="confirm-password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} />
                     </InputContainer>
 
                     <Button type="submit" disable={isSubmitting}>Send</Button>

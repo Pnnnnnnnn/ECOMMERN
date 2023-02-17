@@ -7,7 +7,6 @@ import { BrowserRouter, Routes, Route, Navigate} from 'react-router-dom'
 // pages
 import Home from './pages/Home'
 import { ProductList } from './pages/ProductList'
-import { Login } from './pages/Login'
 import { Product } from './pages/Product'
 import { Cart } from './pages/Cart'
 
@@ -20,7 +19,6 @@ export default function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
           <Route path="/products" element={<ProductList />} />
           <Route path="/product/:id" element={<Product />} />
           <Route path="/products/category/:category" element={<ProductList />} />
