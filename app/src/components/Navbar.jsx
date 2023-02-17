@@ -10,6 +10,7 @@ import styled from 'styled-components'
 import { appName } from '../data';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 
 const Container = styled.div`
     display: flex;
@@ -53,8 +54,16 @@ const ModalMenuItem = styled.div`
     font-size: 14px;
     cursor: pointer;
     color: black;
+` 
+
+const UserContainer = styled.div`
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: black;
 `
- 
+
 const Navbar = () => {
     const numberOfCartItems = useSelector(state => state.cart.cartItems.length)
     const [isRegisterModalOpen, setIsRegisterModalOpen] = useState(false)
@@ -71,12 +80,20 @@ const Navbar = () => {
                     </MenuItem>
                 </Left>
                 <Right>
-                    <ModalMenuItem onClick={()=>setIsRegisterModalOpen(true)}>
-                        REGISTER
-                    </ModalMenuItem>
-                    <ModalMenuItem onClick={()=>setIsLogInModalOpen(true)}>
-                        LOG IN
-                    </ModalMenuItem>
+                    { (localStorage.getItem('username') === null)?(
+                        <>
+                        <ModalMenuItem onClick={()=>setIsRegisterModalOpen(true)}>
+                            REGISTER
+                        </ModalMenuItem>
+                        <ModalMenuItem onClick={()=>setIsLogInModalOpen(true)}>
+                            LOG IN
+                        </ModalMenuItem>
+                        </>):(
+                            <UserContainer>
+                                <AccountCircleRoundedIcon />
+                                {localStorage.getItem('username')}
+                            </UserContainer>
+                    )}
                     <MenuItem to="/cart">
                         <Badge badgeContent={numberOfCartItems} color="primary">
                             <ShoppingCartOutlinedIcon/>

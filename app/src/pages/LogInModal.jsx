@@ -105,6 +105,11 @@ export const LoginModal = ({ isOpen, setIsOpen }) => {
             })
             console.log(res)
             toast.success('Log in successfully')
+            // Save token to local storage
+            localStorage.setItem('token', res.data.token)
+            // Save username to local storage to display in the navbar
+            localStorage.setItem('username', username)
+            
             setIsOpen(false)
         } catch (err) {
             if (axios.isAxiosError(err)) {
