@@ -15,6 +15,7 @@ const Container = styled.div`
     height: 70vh;
 `
 const Arrow = styled.div`
+  color: white;
   width: 50px;
   height: 50px;
   border-radius: 50%;
