@@ -11,6 +11,7 @@ import { appName } from '../data';
 import Badge from '@mui/material/Badge';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 const Container = styled.div`
     display: flex;
@@ -92,6 +93,11 @@ const Navbar = () => {
                             <UserContainer>
                                 <AccountCircleRoundedIcon />
                                 {localStorage.getItem('username')}
+                                <ExitToAppIcon onClick={()=>{
+                                    localStorage.removeItem('username')
+                                    localStorage.removeItem('token')
+                                    window.location.reload()
+                                }} />
                             </UserContainer>
                     )}
                     <MenuItem to="/cart">
