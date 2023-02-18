@@ -36,7 +36,7 @@ const TopButton = styled.button`
   border: 2px solid;
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
-  color: ${props.type === "filled"?"white":"black"};
+  color: ${(props)=>props.type === "filled"?"white":"black"};
 
   @media only screen and (max-width: 992px) {
     font-size: 0.8rem;
@@ -224,7 +224,7 @@ export const Cart = () => {
     <Wrapper>
       <Title>YOUR CART</Title>
       <Top>
-        <TopButton onClick={() => navigate("/")}>CONTINUE SHOPPING</TopButton>
+        <TopButton type="unfilled" onClick={() => navigate("/")}>CONTINUE SHOPPING</TopButton>
         <TopText>Shopping Bag({cartItems.length})</TopText>
         <TopButton type="filled">CHECKOUT NOW</TopButton>
       </Top>
