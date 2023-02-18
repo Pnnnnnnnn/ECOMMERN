@@ -33,10 +33,10 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
+  border: 2px solid;
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+  color: ${props.type === "filled"?"white":"black"};
 
   @media only screen and (max-width: 992px) {
     font-size: 0.8rem;

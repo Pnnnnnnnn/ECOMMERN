@@ -143,10 +143,11 @@ const Button = styled.button`
     color: black;
     cursor: pointer;
     transition: all 0.4s ease;
+    border: 2px solid;
 
     &:hover {
-    background-color: #1c1c1c;
-    color: #f5fafd;
+        background-color: #1c1c1c;
+        color: #f5fafd;
     }
 `;
 
