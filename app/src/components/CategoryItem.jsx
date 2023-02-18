@@ -14,6 +14,10 @@ const Container = styled.button`
     &:hover{
         opacity:0.7;
     }
+
+    @media only screen and (max-width: 992px) {
+        height: 50vh;
+    }
 `;
 const Image = styled.img`
     width: 100%;
@@ -34,7 +38,11 @@ const InfoContainer = styled.div`
 `;
 const Title = styled.h1`
     font-size: 30px;
-    color: #FAF9F6
+    color: #FAF9F6;
+
+    @media only screen and (max-width: 992px) {
+        font-size: 1.5rem;
+    }
 `;
 
 export const CategoryItem = ({item}) => {

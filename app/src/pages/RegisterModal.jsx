@@ -20,7 +20,7 @@ const modalStyles = {
         width: '400px',
         height: '455px',
         padding: '20px',
-        borderRadius: '10px'
+        borderRadius: '10px',
     }
 }
 
@@ -36,6 +36,10 @@ const Top = styled.div`
     justify-content: space-between;
     width: 100%;
     height: 55px;
+    
+    @media only screen and (max-width: 992px) {
+        height: 30px;
+    }
 `;
 const CloseIcon = styled(CloseRoundedIcon)`
     align-self: flex-start;
@@ -46,6 +50,10 @@ const Title = styled.h1`
     align-self: flex-end;
     margin-left: 50%;
     transform: translate(-50%, 0%);
+
+    @media only screen and (max-width: 992px) {
+        align-self: flex-start;
+    }
 `;
 
 const Form = styled.form`
@@ -54,6 +62,10 @@ const Form = styled.form`
     align-items: center;
     justify-content: space-between;
     gap: 5px;
+
+    @media only screen and (max-width: 992px) {
+        gap: 10px;
+    }
 `;
 const InputContainer = styled.div`
     display: flex;
@@ -64,6 +76,10 @@ const Input = styled.input`
     width: 200px;
     height: 30px;
     padding: 5px;
+
+    @media only screen and (max-width: 992px) {
+        width: 160px;
+    }
 `;
 const Label = styled.label`
     margin-bottom: 3px;

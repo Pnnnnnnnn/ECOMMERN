@@ -9,11 +9,13 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   padding: 20px;
+  width: 100vw;
 `;
 
 const Title = styled.h1`
   font-weight: 300;
   text-align: center;
+
 `;
 
 const Top = styled.div`
@@ -21,6 +23,10 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
+
+  @media only screen and (max-width: 992px) {
+    padding: 0px;
+  }
 `;
 
 const TopButton = styled.button`
@@ -31,15 +37,19 @@ const TopButton = styled.button`
   background-color: ${(props) =>
     props.type === "filled" ? "black" : "transparent"};
   color: ${(props) => props.type === "filled" && "white"};
+
+  @media only screen and (max-width: 992px) {
+    font-size: 0.8rem;
+    padding: 5px;
+  }
+
 `;
 
-const TopTexts = styled.div`
-
-`;
 const TopText = styled.span`
   text-decoration: underline;
   cursor: pointer;
   margin: 0px 10px;
+  text-align: center;
 `;
 
 const Bottom = styled.div`
@@ -47,10 +57,16 @@ const Bottom = styled.div`
   justify-content: space-between;
   gap: 20px;
 
+  @media only screen and (max-width: 992px) {
+    flex-direction: column;
+  }
 `;
 
 const Info = styled.div`
   flex: 3;
+  @media only screen and (max-width: 992px) {
+    flex: 1;
+  }
 `;
 
 const CartItem = styled.div`
@@ -66,12 +82,18 @@ const CartItemDetail = styled.div`
   display: flex;
   align-items: flex-start;
   width: 100%;
+  padding-left: 10px;
 `;
 
 const Image = styled.img`
   align-self: center;
   width: 180px;
   height: 180px;
+
+  @media only screen and (max-width: 992px) {
+      width: 100px;
+      height: 100px;
+  }
 `;
 
 const Details = styled.div`
@@ -84,6 +106,10 @@ const Details = styled.div`
 
 const CartItemName = styled.h5`
   font-size: 16px;
+  
+  @media only screen and (max-width: 992px) {
+      font-size: 0.8rem;
+  }
 `;
 
 const DeleteWrapper = styled.div`
@@ -97,9 +123,17 @@ const DeleteText = styled.span`
   font-size: 16px;
   line-height: 20px;
   text-decoration: underline;
+
+  @media only screen and (max-width: 992px) {
+      font-size: 0.8rem;
+  }
 `;
 
-const CartItemSize = styled.span``;
+const CartItemSize = styled.span`
+  @media only screen and (max-width: 992px) {
+      font-size: 0.8rem;
+  }
+`;
 
 const PriceDetail = styled.div`
   flex: 1;
@@ -126,11 +160,19 @@ const AddIcon = styled(AddCircleOutlineRoundedIcon)`
 
 const CartItemAmount = styled.div`
   font-size: 24px;
+
+  @media only screen and (max-width: 992px) {
+      font-size: 1rem;
+  }
 `;
 
 const CartItemPrice = styled.div`
   font-size: 20px;
   font-weight: 200;
+
+  @media only screen and (max-width: 992px) {
+      font-size: 1.2rem;
+  }
 `;
 
 const Summary = styled.div`
@@ -179,63 +221,61 @@ export const Cart = () => {
   }
 
   return (
-      <Wrapper>
-        <Title>YOUR CART</Title>
-        <Top>
-          <TopButton onClick={()=>navigate("/")}>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag{cartItems.length}</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
-        </Top>
-        <Bottom>
-          <Info>
-            {cartItems.map((cartItem) => (
-              <CartItem key={cartItem.cartItemId}>
-                <CartItemDetail>
-                  <Image src={cartItem.img} />
-                  <Details>
-                    <CartItemName>
-                      {cartItem.title}
-                    </CartItemName>
-                    <DeleteWrapper onClick={()=>dispatch(removeCartItem(cartItem))}>
-                      <DeleteOutlineOutlinedIcon />
-                      <DeleteText>Remove</DeleteText>
-                    </DeleteWrapper>
-                    <CartItemSize>
-                      <b>Size:</b> {cartItem.size}
-                    </CartItemSize>
-                  </Details>
-                </CartItemDetail>
-                <PriceDetail>
-                  <CartItemAmountContainer>
-                    <AddIcon onClick={() => handleAmountChange("increase", cartItem)} />
-                    <CartItemAmount>{cartItem.quantity}</CartItemAmount>
-                    <RemoveIcon onClick={() => handleAmountChange("decrease", cartItem)} />
-                  </CartItemAmountContainer>
-                  <CartItemPrice>฿ {cartItem.totalPrice}</CartItemPrice>
-                </PriceDetail>
-              </CartItem>
-            )
-            )}
-          </Info>
-          <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
-            <SummaryItem>
-              <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>฿ {total}</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>฿ 0.00</SummaryItemPrice>
-            </SummaryItem>
-            <SummaryItem type="total">
-              <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>฿ {total}</SummaryItemPrice>
-            </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
-        </Bottom>
-      </Wrapper>
+    <Wrapper>
+      <Title>YOUR CART</Title>
+      <Top>
+        <TopButton onClick={() => navigate("/")}>CONTINUE SHOPPING</TopButton>
+        <TopText>Shopping Bag({cartItems.length})</TopText>
+        <TopButton type="filled">CHECKOUT NOW</TopButton>
+      </Top>
+      <Bottom>
+        <Info>
+          {cartItems.map((cartItem) => (
+            <CartItem key={cartItem.cartItemId}>
+              <CartItemDetail>
+                <Image src={cartItem.img} />
+                <Details>
+                  <CartItemName>
+                    {cartItem.title}
+                  </CartItemName>
+                  <DeleteWrapper onClick={() => dispatch(removeCartItem(cartItem))}>
+                    <DeleteOutlineOutlinedIcon />
+                    <DeleteText>Remove</DeleteText>
+                  </DeleteWrapper>
+                  <CartItemSize>
+                    <b>Size:</b> {cartItem.size}
+                  </CartItemSize>
+                </Details>
+              </CartItemDetail>
+              <PriceDetail>
+                <CartItemAmountContainer>
+                  <AddIcon onClick={() => handleAmountChange("increase", cartItem)} />
+                  <CartItemAmount>{cartItem.quantity}</CartItemAmount>
+                  <RemoveIcon onClick={() => handleAmountChange("decrease", cartItem)} />
+                </CartItemAmountContainer>
+                <CartItemPrice>฿ {cartItem.totalPrice}</CartItemPrice>
+              </PriceDetail>
+            </CartItem>
+          )
+          )}
+        </Info>
+        <Summary>
+          <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+          <SummaryItem>
+            <SummaryItemText>Subtotal</SummaryItemText>
+            <SummaryItemPrice>฿ {total}</SummaryItemPrice>
+          </SummaryItem>
+          <SummaryItem>
+            <SummaryItemText>Estimated Shipping</SummaryItemText>
+            <SummaryItemPrice>฿ 0.00</SummaryItemPrice>
+          </SummaryItem>
+          <SummaryItem type="total">
+            <SummaryItemText>Total</SummaryItemText>
+            <SummaryItemPrice>฿ {total}</SummaryItemPrice>
+          </SummaryItem>
+          <Button>CHECKOUT NOW</Button>
+        </Summary>
+      </Bottom>
+    </Wrapper>
   );
 };
