@@ -35,7 +35,10 @@ app.use(helmet());
 app.use(xss());
 
 //Enable CORS
-app.use(cors());
+app.use(cors({
+    origin: ["http://localhost:5173",
+    "https://ecommern.onrender.com",]
+}));
 
 //Rate Limiting
 const limiter=rateLimit({
