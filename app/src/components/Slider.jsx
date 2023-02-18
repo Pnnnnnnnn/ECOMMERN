@@ -12,7 +12,7 @@ const Container = styled.div`
     align-items: center;
     background-color: #f5fafd;
     width: 100vw;
-    height: 80vh;
+    height: 70vh;
 `
 const Arrow = styled.div`
   width: 50px;
