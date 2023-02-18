@@ -97,7 +97,7 @@ const Button = styled.button`
     outline: none;
 `;
 
-export const LoginModal = ({ isOpen, setIsOpen }) => {
+export const LogInModal = ({ isOpen, setIsOpen }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)

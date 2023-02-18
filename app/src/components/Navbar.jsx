@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 import { useSelector } from "react-redux";
 import { RegisterModal } from '../pages/RegisterModal';
-import { LoginModal } from '../pages/LoginModal';
+import { LogInModal } from '../pages/LogInModal';
 
 import {NavLink} from 'react-router-dom';
 import styled from 'styled-components'
@@ -108,7 +108,7 @@ const Navbar = () => {
                 </Right>
             </Nav>
             <RegisterModal isOpen={isRegisterModalOpen} setIsOpen={setIsRegisterModalOpen} />
-            <LoginModal isOpen={isLogInModalOpen} setIsOpen={setIsLogInModalOpen} />
+            <LogInModal isOpen={isLogInModalOpen} setIsOpen={setIsLogInModalOpen} />
         </Container>
     )
 }
