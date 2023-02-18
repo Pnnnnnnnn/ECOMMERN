@@ -120,6 +120,7 @@ export const RegisterModal = ({ isOpen, setIsOpen }) => {
                 const { response } = err
                 const message = response.data.message
                 toast.error(message || 'Something went wrong')
+                setIsSubmitting(false)
                 return
             }
             toast.error("Something went wrong")

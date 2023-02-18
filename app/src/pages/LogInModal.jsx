@@ -88,6 +88,7 @@ export const LoginModal = ({ isOpen, setIsOpen }) => {
 
     const logInHandler = async (e) => {
         e.preventDefault()
+        console.log(isSubmitting)
         if (isSubmitting) return
         setIsSubmitting(true)
 
@@ -109,13 +110,13 @@ export const LoginModal = ({ isOpen, setIsOpen }) => {
             localStorage.setItem('token', res.data.token)
             // Save username to local storage to display in the navbar
             localStorage.setItem('username', username)
-            
             setIsOpen(false)
         } catch (err) {
             if (axios.isAxiosError(err)) {
                 const { response } = err
                 const message = response.data.message
                 toast.error(message || 'Something went wrong')
+                setIsSubmitting(false)
                 return
             }
             toast.error("Something went wrong")
