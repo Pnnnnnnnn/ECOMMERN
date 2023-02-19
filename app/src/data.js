@@ -1,6 +1,7 @@
 export const appName = "ECOMMERN®";
 
-export const appDesciption = "This website was built using the MERN stack, a popular set of technologies for creating full-stack web applications. The MERN stack combines MongoDB for the database, Express for the web server framework, React for the user interface, and Node.js for the server-side runtime environment. I built this project as a way to learn full-stack web development, and I hope you enjoy using it as much as I enjoyed building it!"
+export const firstAppDesciption = "This website is heavily inspired by the streetwear retail store carnivalbkk.com. We are proud to credit them as a major source of inspiration for our product offerings and overall aesthetic."
+export const secondAppDesciption = "I built this project as a way to learn full-stack web development, and I hope you enjoy using it as much as I enjoyed building it!"
 
 export const sliderItems = [
     {

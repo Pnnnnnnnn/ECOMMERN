@@ -1,5 +1,5 @@
 import React from 'react'
-import { appName, appDesciption } from '../data';
+import { appName, firstAppDesciption, secondAppDesciption } from '../data';
 import styled from 'styled-components';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -48,7 +48,8 @@ export const Footer = () => {
   return (
     <Container>
         <Logo>{appName}</Logo>
-        <Description>{appDesciption}</Description>
+        <Description>{firstAppDesciption}</Description>
+        <Description>{secondAppDesciption}</Description>
         <IconWrapper>
             <Icon color="3B5999">
                 <FacebookIcon />
