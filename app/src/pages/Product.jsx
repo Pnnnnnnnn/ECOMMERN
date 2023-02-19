@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import api from '../api/api';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
 import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import { toast } from 'react-hot-toast';
 
 const Container = styled.div`
     display: flex;
@@ -161,28 +162,28 @@ const IconContainer = styled.button`
 `;
 
 export const Product = () => {
-   const dispatch = useDispatch()
-   const [quantity, setQuantity] = useState(1)
-   const [product, setProduct] = useState({})
-   const [size, setSize] = useState("S")
-   const location = useLocation();
-   const locationArray = location.pathname.split("/")
-   const itemID = locationArray[locationArray.length - 1]
+    const dispatch = useDispatch()
+    const [quantity, setQuantity] = useState(1)
+    const [product, setProduct] = useState({})
+    const [size, setSize] = useState("S")
+    const location = useLocation();
+    const locationArray = location.pathname.split("/")
+    const itemID = locationArray[locationArray.length - 1]
 
-   useEffect(() => {
+    useEffect(() => {
         const fetchData = async () => {
-            try{
+            try {
                 const response = await api.get(`/products/${itemID}`)
                 console.log(response)
                 setProduct(response.data.data)
-            }catch(err){
+            } catch (err) {
                 console.log(err)
             }
         }
         fetchData()
     }, [itemID])
 
-   return (
+    return (
         <Container>
             {Object.keys(product).length > 0 ? (
                 <Wrapper>
@@ -198,7 +199,7 @@ export const Product = () => {
                         <FilterContainer>
                             <Filter>
                                 <FilterTitle htmlFor="sizes">Size</FilterTitle>
-                                <FilterSize name='sizes' id='sizes' onChange={(e)=>setSize(e.target.value)}>
+                                <FilterSize name='sizes' id='sizes' onChange={(e) => setSize(e.target.value)}>
                                     {product.size.map((size) => (
                                         <FilterSizeOption key={size} value={size}>{size}</FilterSizeOption>
                                     ))}
@@ -207,21 +208,26 @@ export const Product = () => {
                         </FilterContainer>
                         <PurchaseContainer>
                             <QuantityContainer>
-                                <IconContainer onClick={()=>setQuantity(prevQuantity => (quantity > 0)?prevQuantity - 1:0)}>
+                                <IconContainer onClick={() => setQuantity(prevQuantity => (quantity > 0) ? prevQuantity - 1 : 0)}>
                                     <RemoveCircleOutlineRoundedIcon />
                                 </IconContainer>
-                                    <Quantity>
-                                        {quantity}
-                                    </Quantity>
-                                <IconContainer onClick={()=>setQuantity(prevQuantity => prevQuantity + 1)}>
+                                <Quantity>
+                                    {quantity}
+                                </Quantity>
+                                <IconContainer onClick={() => setQuantity(prevQuantity => prevQuantity + 1)}>
                                     <AddCircleOutlineRoundedIcon />
                                 </IconContainer>
                             </QuantityContainer>
-                            <Button onClick={() => dispatch(addCartItem({...product, 
-                                                                            "cartItemId":product._id+'-'+size,
-                                                                            "size":size, 
-                                                                            "quantity":quantity,
-                                                                            "totalPrice":product.price*quantity}))}>
+                            <Button onClick={() => {
+                                dispatch(addCartItem({
+                                    ...product,
+                                    "cartItemId": product._id + '-' + size,
+                                    "size": size,
+                                    "quantity": quantity,
+                                    "totalPrice": product.price * quantity
+                                }))
+                                toast.success("Added to cart")
+                            }}>
                                 ADD TO CART
                             </Button>
                         </PurchaseContainer>
@@ -230,6 +236,5 @@ export const Product = () => {
                 <h1>Loading...</h1>)
             }
         </Container>
-   )
- }
- 
+    )
+}
