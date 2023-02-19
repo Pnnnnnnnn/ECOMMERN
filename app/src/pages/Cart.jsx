@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { removeCartItem, increaseQuantity, decreaseQuantity } from "../features/cart/cartSlice";
+import toast from "react-hot-toast";
 
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import RemoveCircleOutlineRoundedIcon from '@mui/icons-material/RemoveCircleOutlineRounded';
@@ -205,6 +206,7 @@ const Button = styled.button`
   background-color: black;
   color: white;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const Cart = () => {
@@ -219,6 +221,9 @@ export const Cart = () => {
       dispatch(decreaseQuantity(cartItem))
     }
   }
+  const handleCheckout = () => {
+    toast("Checkout system will be implemented soon", { icon: "🤥" })
+  }
 
   return (
     <Wrapper>
@@ -226,7 +231,7 @@ export const Cart = () => {
       <Top>
         <TopButton type="unfilled" onClick={() => navigate("/")}>CONTINUE SHOPPING</TopButton>
         <TopText>Shopping Bag({cartItems.length})</TopText>
-        <TopButton type="filled">CHECKOUT NOW</TopButton>
+        <TopButton type="filled" onClick={handleCheckout} >CHECKOUT NOW</TopButton>
       </Top>
       <Bottom>
         <Info>
@@ -273,7 +278,7 @@ export const Cart = () => {
             <SummaryItemText>Total</SummaryItemText>
             <SummaryItemPrice>฿ {total}</SummaryItemPrice>
           </SummaryItem>
-          <Button>CHECKOUT NOW</Button>
+          <Button onClick={handleCheckout} >CHECKOUT NOW</Button>
         </Summary>
       </Bottom>
     </Wrapper>
