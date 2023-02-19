@@ -1,6 +1,6 @@
 export const appName = "ECOMMERN®";
 
-export const firstAppDesciption = "This website is heavily inspired by the streetwear retail store carnivalbkk.com. We are proud to credit them as a major source of inspiration for our product offerings and overall aesthetic."
+export const firstAppDesciption = "This website is heavily inspired by the streetwear retail store carnivalbkk.com. I am proud to credit them as a major source of inspiration for product offerings and overall aesthetic."
 export const secondAppDesciption = "I built this project as a way to learn full-stack web development, and I hope you enjoy using it as much as I enjoyed building it!"
 
 export const sliderItems = [
